@@ -14,6 +14,7 @@
         <h4>Développeur(s):{{ game.developer }}</h4>
         <h4>Date de publication:{{ game.release_date }}</h4>
     </div>
+    <router-link :to="'/'" class="btn btn-secondary">Retour</router-link>
   </div>
 </template>
 

@@ -9,5 +9,5 @@ const connex = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
 const db = {}
 db.Sequelize = Sequelize
 db.connex = connex
-db.products = require('./game.model.js')(connex, Sequelize)
+db.games = require('./game.model.js')(connex, Sequelize)
 module.exports = db

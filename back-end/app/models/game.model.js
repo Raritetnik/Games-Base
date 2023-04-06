@@ -1,5 +1,5 @@
 module.exports = (connex, Sequelize) => {
-    const Product = connex.define('games', {
+    const Game = connex.define('games', {
         title: {
             type: Sequelize.STRING(20)
         },
@@ -28,5 +28,5 @@ module.exports = (connex, Sequelize) => {
             type: Sequelize.DATE
         },
     })
-    return Product
+    return Game
 }

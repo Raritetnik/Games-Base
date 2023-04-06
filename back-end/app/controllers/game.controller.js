@@ -1,8 +1,9 @@
 const db = require('../models')
-const Product = db.products
+const Game = db.games
 
 exports.myFindAll = (req, res) => {
-    Product.findAll()
+    Game.findAll()
+    Game.findAll()
     .then(data => {
         res.send(data)
     })
@@ -15,7 +16,7 @@ exports.myFindAll = (req, res) => {
 
 exports.myFindOne = (req, res) => {
     const id = req.params.id
-    Product.findByPk(id)
+    Game.findByPk(id)
     .then(data => {
         res.send(data)
     })
@@ -27,15 +28,15 @@ exports.myFindOne = (req, res) => {
 }
 
 exports.myCreate = (req, res) => {
-    // console.log(req.body)
-    if(!req.body.name) {
+    console.log(req.body)
+    if(!req.body.title) {
         res.status(400).send({
             message: 'The name is mandatory'
         })
         return;
     }
 
-    Product.create(req.body)
+    Game.create(req.body)
         .then(data => {
             res.send(data)
         })
@@ -48,15 +49,15 @@ exports.myCreate = (req, res) => {
 
 exports.myDestroy = (req, res) => {
     const id = req.params.id
-    Product.destroy({ where: {id : id}})
+    Game.destroy({ where: {id : id}})
     .then(num => {
         if (num == 1) {
             res.send({
-                message: 'product was deleted'
+                message: 'game was deleted'
             })
         }else {
             res.send({
-                message: 'product was not deleted'
+                message: 'game was not deleted'
             })
         }
     })
@@ -69,17 +70,17 @@ exports.myDestroy = (req, res) => {
 
 exports.myUpdate = (req, res) => {
     const id = req.params.id
-    Product.update(req.body, {
+    Game.update(req.body, {
         where: {id: id}
     })
     .then(num => {
         if (num == 1) {
             res.send({
-                message: 'product was updated'
+                message: 'game was updated'
             })
         }else {
             res.send({
-                message: 'product was not updated'
+                message: 'game was not updated'
             })
         }
     })

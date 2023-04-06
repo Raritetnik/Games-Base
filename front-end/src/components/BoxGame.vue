@@ -10,8 +10,8 @@ export default {
     }
   },
   methods: {
-    async onClick () {
-      await GameDataService.delete(this.$route.params.id)
+    async onClick (e) {
+      await GameDataService.delete(e.target.getAttribute('data-id'))
         .then(response => {
           console.log(response.data)
         })
@@ -29,7 +29,7 @@ export default {
         <footer class="d-flex justify-content-end gap-2">
           <router-link :to="'/game/'+this.afficheJeu.id" class="btn btn-primary">Voir</router-link>
           <router-link :to="'/game/'+this.afficheJeu.id+'/edit'" class="btn btn-secondary">Modifier</router-link>
-          <button @click="onClick" class="btn btn-danger">Supprimer</button>
+          <button @click="onClick" class="btn btn-danger" :data-id="this.afficheJeu.id">Supprimer</button>
         </footer>
       </main>
     </article>

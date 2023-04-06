@@ -1,11 +1,16 @@
 <template>
   <div class="container pt-4 d-flex flex-column align-items-center">
+    <div class="p-3 bg-success border text-light rounded-3 d-flex position-relative text-center" v-if="this.editSuccess">
+      <h4 class="text-center w-100">Le jeu est modifier avec succes</h4>
+      <button @click="this.editSuccess = !this.editSuccess" class="d-block position-absolute end-0 top-0 me-4 px-1 btn fw-bolder">X</button>
+    </div>
     <form action="" @submit.prevent="onSubmit" class="d-flex align-items-center">
       <div class="text-start">
           <img :src="game.thumbnail" alt="">
           <div class="ps-4">
               <h1>{{ game.title }}</h1>
               <p>{{ game.short_description }}</p>
+              <router-link :to="'/'" class="btn btn-secondary">Retour</router-link>
           </div>
       </div>
       <div class="text-start p-4 w-100">
@@ -37,7 +42,8 @@ import GameDataService from '../services/GameDataService.js'
 export default {
   data () {
     return {
-      game: {}
+      game: {},
+      editSuccess: false
     }
   },
   async beforeMount () {
@@ -57,7 +63,7 @@ export default {
       var json = JSON.stringify(object)
       await GameDataService.update(this.$route.params.id, json)
         .then(response => {
-          console.log(response.data)
+          this.editSuccess = true;
         })
     }
   }

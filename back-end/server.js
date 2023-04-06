@@ -3,14 +3,15 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const app = express()
 const corsOption = {
-    origin: 'http://localhost:5080',
-    credentials: true
+    origin: 'http://localhost:8080',
+    credentials: true,
+    optionsSuccessStatus: 200
 }
 
 app.use(cors(corsOption))
 
 // Donner accès aux données
-app.use(function (req, res, next) {
+/*app.use(function (req, res, next) {
     // Website you wish to allow to connect
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
 
@@ -26,7 +27,7 @@ app.use(function (req, res, next) {
 
     // Pass to next layer of middleware
     next();
-});
+});*/
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
