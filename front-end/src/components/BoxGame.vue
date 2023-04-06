@@ -7,13 +7,15 @@ export default {
     afficheJeu: {
       type: Object,
       required: true
-    }
+    },
+    updateList: { type: Function }
   },
   methods: {
     async onClick (e) {
       await GameDataService.delete(e.target.getAttribute('data-id'))
         .then(response => {
           console.log(response.data)
+          this.updateList()
         })
     }
   }
@@ -25,7 +27,7 @@ export default {
       <header><img :src="this.afficheJeu.thumbnail" alt=""></header>
       <main class="ps-4 d-flex flex-column text-start justify-content-between w-100">
         <h2>{{ this.afficheJeu.title }}</h2>
-        <div>{{ this.afficheJeu.short_description }}</div>
+        <div>{{ this.afficheJeu.description }}</div>
         <footer class="d-flex justify-content-end gap-2">
           <router-link :to="'/game/'+this.afficheJeu.id" class="btn btn-primary">Voir</router-link>
           <router-link :to="'/game/'+this.afficheJeu.id+'/edit'" class="btn btn-secondary">Modifier</router-link>

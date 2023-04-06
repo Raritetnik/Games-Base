@@ -5,41 +5,46 @@
       <button @click="this.editSuccess = !this.editSuccess" class="d-block position-absolute end-0 top-0 me-4 px-1 btn fw-bolder">X</button>
     </div>
     <div class="d-flex justify-content-center p-2 mb-4" style="max-width: 1000px">
-      <form action="" class="d-flex flex-column text-start w-50" @submit.prevent="onSubmit">
+      <form ref="form" class="d-flex flex-column text-start w-50" @submit.prevent="onSubmit">
         <label for="title">Titre:</label>
-        <input type="text" name="title" id="title" class="form-control" :v-model="title">
-        <label for="genre">Genre:</label>
-        <input type="text" name="genre" class="form-control" :v-model="genre">
-        <label for="platform">Platform:</label>
-        <input type="text" name="platform" class="form-control" :v-model="platform">
-        <label for="publisher">Publisher:</label>
-        <input type="text" name="publisher" class="form-control" :v-model="publisher">
-        <label for="developer">Developer:</label>
-        <input type="text" name="developer" class="form-control" :v-model="developer">
-        <label for="release_date">Developer:</label>
-        <input type="text" name="release_date" class="form-control" :v-model="release_date">
-        <label for="short_description">Description:</label>
-        <textarea name="short_description" :v-model="short_description"
-        id="short_description" class="form-control" rows="4"></textarea>
+          <input type="text" name="title" id="title" class="form-control" :v-model="title">
+
+          <label for="thumbnail">Lien sur image:</label>
+          <input type="text" name="thumbnail" class="form-control"
+          :v-model="thumbnail">
+
+          <label for="category">Catégorie:</label>
+          <input type="text" name="category" class="form-control"
+          :v-model="category">
+
+          <label for="price">Prix:</label>
+          <input type="number" name="price" class="form-control" :v-model="release_date" step="0.01">
+
+          <label for="description">Description:</label>
+          <textarea name="description"
+          id="description" class="form-control" rows="4"></textarea>
         <input type="submit" value="Sauvegarder" class="btn btn-primary mt-4">
       </form>
     </div>
   </div>
 </template>
 <script>
+/* eslint-disable */
 import GameDataService from '../services/GameDataService.js'
 
 export default {
   name: 'AddGame',
   props: {
-    jeux: {
-      type: Array,
-      required: true
-    }
+    jeux: [],
+    updateAffichage: { type: Function }
   },
   data () {
     return {
-      editSuccess: false
+      editSuccess: false,
+      title: "",
+      thumbnail: "",
+      category: "",
+      price: "",
     }
   },
   methods: {
@@ -50,12 +55,16 @@ export default {
       formData.forEach( function(value, key) {
           object[key] = value
       })
-      console.log(object)
       var json = JSON.stringify(object)
       await GameDataService.create(json)
         .then(response => {
           this.editSuccess = true;
+          this.updateAffichage();
+          this.resetUserForm();
         })
+    },
+    resetUserForm () {
+      this.$refs.form.reset();
     }
   }
 }

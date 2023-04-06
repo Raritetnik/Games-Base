@@ -3,8 +3,8 @@
     <h1>Liste des jeux</h1>
     <button v-if="!showAddGame" class="btn btn-success mb-4" :onClick="changeStatus">Ajouter un jeu</button>
     <button v-if="showAddGame" class="btn btn-danger mb-4" :onClick="changeStatus">Fermer</button>
-    <AddGame v-if="showAddGame" :jeux="games"/>
-    <ListeGames :jeux="games" />
+    <AddGame v-if="showAddGame" :jeux="games" :updateAffichage="updateListe"/>
+    <ListeGames :jeux="games" :updateAffichage="updateListe" />
   </div>
 </template>
 
@@ -36,6 +36,12 @@ export default {
   methods: {
     changeStatus () {
       this.showAddGame = !this.showAddGame
+    },
+    async updateListe () {
+      await GameDataService.getAll()
+        .then(response => {
+          this.games = response.data
+        })
     }
   }
 }

@@ -2,8 +2,8 @@
   <nav class="menu">
     <h1>Gam-o-Mod</h1>
     <div>
-      <router-link to="/">Produits</router-link> |
-      <router-link to="/about">À propos</router-link>
+      <router-link to="/">Jeux</router-link> |
+      <router-link to="/about">Accueil</router-link>
     </div>
   </nav>
   <router-view/>

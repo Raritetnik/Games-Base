@@ -1,31 +1,19 @@
 module.exports = (connex, Sequelize) => {
     const Game = connex.define('games', {
         title: {
-            type: Sequelize.STRING(20)
+            type: Sequelize.STRING(50)
         },
         thumbnail: {
             type: Sequelize.STRING(250)
         },
-        short_description: {
+        description: {
             type: Sequelize.TEXT
         },
-        genre: {
-            type: Sequelize.STRING(250)
+        price: {
+            type: Sequelize.DOUBLE
         },
-        game_url: {
-            type: Sequelize.STRING(250)
-        },
-        platform: {
-            type: Sequelize.STRING(40)
-        },
-        developer: {
-            type: Sequelize.STRING(100)
-        },
-        publisher: {
-            type: Sequelize.STRING(100)
-        },
-        release_date: {
-            type: Sequelize.DATE
+        category: {
+            type: Sequelize.STRING(50)
         },
     })
     return Game

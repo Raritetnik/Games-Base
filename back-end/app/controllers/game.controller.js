@@ -53,11 +53,11 @@ exports.myDestroy = (req, res) => {
     .then(num => {
         if (num == 1) {
             res.send({
-                message: 'game was deleted'
+                message: 'Game was deleted'
             })
         }else {
             res.send({
-                message: 'game was not deleted'
+                message: 'Game was not deleted'
             })
         }
     })

@@ -16,19 +16,22 @@
       <div class="text-start p-4 w-100">
           <label for="title">Titre:</label>
           <input type="text" name="title" id="title" class="form-control" :v-model="title" :value="game.title">
-          <label for="genre">Genre:</label>
-          <input type="text" name="genre" class="form-control" :v-model="genre" :value="game.genre">
-          <label for="platform">Platform:</label>
-          <input type="text" name="platform" class="form-control" :v-model="platform" :value="game.platform">
-          <label for="publisher">Publisher:</label>
-          <input type="text" name="publisher" class="form-control" :v-model="publisher" :value="game.publisher">
-          <label for="developer">Developer:</label>
-          <input type="text" name="developer" class="form-control" :v-model="developer" :value="game.developer">
-          <label for="release_date">Developer:</label>
-          <input type="text" name="release_date" class="form-control" :v-model="release_date" :value="game.release_date">
-          <label for="short_description">Description:</label>
-          <textarea name="short_description"
-          id="short_description" class="form-control" :value="game.short_description" rows="4"></textarea>
+
+          <label for="thumbnail">Lien sur image:</label>
+          <input type="text" name="thumbnail" class="form-control"
+          :v-model="thumbnail" :value="game.thumbnail">
+
+          <label for="category">Catégorie:</label>
+          <input type="text" name="category" class="form-control"
+          :v-model="category" :value="game.category">
+
+          <label for="release_date">Prix:</label>
+          <input type="number" name="release_date" class="form-control" :v-model="release_date" :value="game.release_date">
+
+          <label for="description">Description:</label>
+          <textarea name="description"
+          id="description" class="form-control"
+          :value="game.description" rows="4"></textarea>
 
           <input type="submit" value="Sauvegarder" class="btn btn-primary">
       </div>
@@ -63,9 +66,18 @@ export default {
       var json = JSON.stringify(object)
       await GameDataService.update(this.$route.params.id, json)
         .then(response => {
-          this.editSuccess = true;
+          this.editSuccess = true
+          this.updateEdit();
         })
+    },
+    async updateEdit () {
+      await GameDataService.get(this.$route.params.id)
+      .then(response => {
+        console.log(response.data)
+        this.game = response.data
+      })
     }
+
   }
 }
 </script>

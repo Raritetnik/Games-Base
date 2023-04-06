@@ -1,20 +1,17 @@
 <template>
-  <div class="container pt-4 d-flex flex-column align-items-center">
-    <div class="d-flex text-start">
+  <div class="container pt-4 d-flex justify-content-between gap-5">
+    <div class="text-start">
         <img :src="game.thumbnail" alt="">
-        <div class="ps-4">
-            <h1>{{ game.title }}</h1>
-            <p>{{ game.short_description }}</p>
+        <router-link :to="'/'" class="btn btn-secondary m-4">Retour</router-link>
+    </div>
+    <div class="text-start">
+        <h4>Titre: {{ game.title }}</h4>
+        <h4>Catégorie: {{ game.category }}</h4>
+        <h4>Description:</h4> <p>{{ game.description }}</p>
+        <div class="bg-info text-center p-2 rounded-pill fw-bold">
+          <h2 class="m-0">{{ ( Number(game.price) === 0) ? "Gratuit":  "CAD"+game.price+"$" }}</h2>
         </div>
     </div>
-    <div class="text-start p-4">
-        <h4>URL: <a :href="game.game_url">{{ game.game_url }}</a></h4>
-        <h4>Genre(s): {{ game.genre }}</h4>
-        <h4>Platforme(s):{{ game.platform }}</h4>
-        <h4>Développeur(s):{{ game.developer }}</h4>
-        <h4>Date de publication:{{ game.release_date }}</h4>
-    </div>
-    <router-link :to="'/'" class="btn btn-secondary">Retour</router-link>
   </div>
 </template>
 
