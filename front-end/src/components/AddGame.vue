@@ -4,7 +4,7 @@
       <h4 class="text-center w-100">Le jeu est modifier avec succes</h4>
       <button @click="this.editSuccess = !this.editSuccess" class="d-block position-absolute end-0 top-0 me-4 px-1 btn fw-bolder">X</button>
     </div>
-    <div class="d-flex justify-content-center p-2 mb-4" style="max-width: 1000px">
+    <div class="d-flex justify-content-center p-2 mb-4">
       <form ref="form" class="d-flex flex-column text-start w-50" @submit.prevent="onSubmit">
         <label for="title">Titre:</label>
           <input type="text" name="title" id="title" class="form-control" :v-model="title">

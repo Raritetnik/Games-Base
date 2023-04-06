@@ -25,8 +25,8 @@
           <input type="text" name="category" class="form-control"
           :v-model="category" :value="game.category">
 
-          <label for="release_date">Prix:</label>
-          <input type="number" name="release_date" class="form-control" :v-model="release_date" :value="game.release_date">
+          <label for="price">Prix:</label>
+          <input type="number" name="price" class="form-control" :v-model="price" :value="game.price" step="0.01">
 
           <label for="description">Description:</label>
           <textarea name="description"

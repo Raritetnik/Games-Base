@@ -1,8 +1,8 @@
 <template>
   <div class="container pt-4 d-flex justify-content-between gap-5">
-    <div class="text-start">
+    <div class="text-start d-flex flex-column align-items-center">
         <img :src="game.thumbnail" alt="">
-        <router-link :to="'/'" class="btn btn-secondary m-4">Retour</router-link>
+        <router-link :to="'/'" class="btn btn-secondary m-4 w-25">Retour</router-link>
     </div>
     <div class="text-start">
         <h4>Titre: {{ game.title }}</h4>
